@@ -46,6 +46,16 @@ const playRound = function (playerMove, computerMove) {
 
     console.log(playerScore);
     console.log(computerScore);
+    playerScores.textContent = `Player score: ${playerScore}`;
+    compterScores.textContent = `Computer score: ${computerScore}`;
+
+    if (playerScore === 5) {
+        scores.appendChild(winnerPlayer);
+    } else if (computerScore === 5){
+        scores.appendChild(computerWinner);
+    } else {
+        console.log('');
+    }
     
 
     if (computerMove === playerMove) {
@@ -72,16 +82,8 @@ const playRound = function (playerMove, computerMove) {
     console.log('Wrong input.');
 } 
 
-playerScores.textContent = `Player score: ${playerScore}`;
-compterScores.textContent = `Computer score: ${computerScore}`;
 
-if (playerScore === 5) {
-    scores.appendChild(winnerPlayer);
-} else if (computerScore === 5){
-    scores.appendChild(computerWinner);
-} else {
-    console.log('');
-}
+
 
 }
 

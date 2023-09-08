@@ -3,9 +3,9 @@ let playerScore = 0;
 let computerScore = 0;
 
 
-const game = function () {
+
     //player makes a move
-    let playerPick = prompt('Your move: ');
+    //let playerPick = prompt('Your move: ');
 
     function getComputerChoice () {
 
@@ -22,7 +22,6 @@ const game = function () {
     //display the value
 }
 
-const computerPick = getComputerChoice();
 
    //win-loss function
 const playRound = function (playerMove, computerMove) {
@@ -37,7 +36,7 @@ const playRound = function (playerMove, computerMove) {
 } else if (playerMove === 'Paper' && computerMove === 'Scissors' ) {
     console.log(`Computer picked ${computerMove}. You picked ${playerMove}. You lose.`);
      return computerScore += 1;
-} else if (playerMove === 'Paper' && getComputerChoice === 'Rock' ) {
+} else if (playerMove === 'Paper' && computerMove === 'Rock' ) {
     console.log(`Computer picked ${computerMove}. You picked ${playerMove}. You win.`);
     return playerScore += 1;
 } else if (playerMove === 'Scissors' && computerMove === 'Rock' ) {
@@ -51,13 +50,23 @@ const playRound = function (playerMove, computerMove) {
 } 
 }
 
-playRound(playerPick, computerPick);
+
 
 console.log(playerScore);
 console.log(computerScore);
 
+const rock = document.getElementById('rock');
+const paper = document.getElementById('paper');
+const scissors = document.getElementById('scissors');
+
+rock.addEventListener('click', function(){playRound('Rock', getComputerChoice())});
+paper.addEventListener('click', function(){playRound('Paper', getComputerChoice())});
+scissors.addEventListener('click', function(){playRound('Scissors', getComputerChoice())});
+
+
+
 //play until someone reaches score of 5
-if (playerScore === 5) {
+/* if (playerScore === 5) {
     console.log('You are the winner.');
 } else if (computerScore === 5){
     console.log('computer wins the game');
@@ -69,4 +78,4 @@ if (playerScore === 5) {
 
 while (playerScore < 5 && computerScore < 5) {
     game();
-}
+} */

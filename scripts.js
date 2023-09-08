@@ -4,6 +4,24 @@ let computerScore = 0;
 
 
 
+const rock = document.getElementById('rock');
+const paper = document.getElementById('paper');
+const scissors = document.getElementById('scissors');
+const playerScores = document.getElementById('player-score');
+const compterScores = document.getElementById('computer-score');
+
+const scores = document.querySelector('.scores');
+
+const winnerPlayer = document.createElement('p');
+winnerPlayer.classList.add('player-winner');
+winnerPlayer.textContent = 'You are the winner!';
+
+const computerWinner = document.createElement('p');
+computerWinner.classList.add('computer-winner');
+computerWinner.textContent = 'Computer wins! You lose.';
+
+
+
     //player makes a move
     //let playerPick = prompt('Your move: ');
 
@@ -25,6 +43,11 @@ let computerScore = 0;
 
    //win-loss function
 const playRound = function (playerMove, computerMove) {
+
+    console.log(playerScore);
+    console.log(computerScore);
+    
+
     if (computerMove === playerMove) {
         console.log('it\'s a tie');
 } else if (playerMove === 'Rock' && computerMove === 'Scissors'){
@@ -48,16 +71,21 @@ const playRound = function (playerMove, computerMove) {
 } else {
     console.log('Wrong input.');
 } 
+
+playerScores.textContent = `Player score: ${playerScore}`;
+compterScores.textContent = `Computer score: ${computerScore}`;
+
+if (playerScore === 5) {
+    scores.appendChild(winnerPlayer);
+} else if (computerScore === 5){
+    scores.appendChild(computerWinner);
+} else {
+    console.log('');
+}
+
 }
 
 
-
-console.log(playerScore);
-console.log(computerScore);
-
-const rock = document.getElementById('rock');
-const paper = document.getElementById('paper');
-const scissors = document.getElementById('scissors');
 
 rock.addEventListener('click', function(){playRound('Rock', getComputerChoice())});
 paper.addEventListener('click', function(){playRound('Paper', getComputerChoice())});

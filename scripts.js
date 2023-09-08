@@ -9,6 +9,7 @@ const paper = document.getElementById('paper');
 const scissors = document.getElementById('scissors');
 const playerScores = document.getElementById('player-score');
 const compterScores = document.getElementById('computer-score');
+const newGame = document.getElementById('new-game');
 
 const scores = document.querySelector('.scores');
 
@@ -20,10 +21,24 @@ const computerWinner = document.createElement('p');
 computerWinner.classList.add('computer-winner');
 computerWinner.textContent = 'Computer wins! You lose.';
 
+const enabledButtons = function(){
+    rock.disabled = false;
+    paper.disabled = false;
+    scissors.disabled = false;
+}
 
+const restartGame = function () {
+    computerScore = 0;
+    playerScore = 0;
+
+    playerScores.textContent = `Player score: ${playerScore}`;
+    compterScores.textContent = `Computer score: ${computerScore}`;
+
+    enabledButtons();
+}
 
     //player makes a move
-    //let playerPick = prompt('Your move: ');
+    
 
     function getComputerChoice () {
 
@@ -43,16 +58,26 @@ computerWinner.textContent = 'Computer wins! You lose.';
 
    //win-loss function
 const playRound = function (playerMove, computerMove) {
+    //display result 
 
-    console.log(playerScore);
-    console.log(computerScore);
+    const disableButtons = function() {
+        rock.disabled = true;
+        paper.disabled = true;
+        scissors.disabled = true;
+    }   
+
     playerScores.textContent = `Player score: ${playerScore}`;
     compterScores.textContent = `Computer score: ${computerScore}`;
+    
+   
 
+    //play till someone reaches score of five
     if (playerScore === 5) {
         scores.appendChild(winnerPlayer);
+        disableButtons();
     } else if (computerScore === 5){
         scores.appendChild(computerWinner);
+        disableButtons();
     } else {
         console.log('');
     }
@@ -83,8 +108,6 @@ const playRound = function (playerMove, computerMove) {
 } 
 
 
-
-
 }
 
 
@@ -92,6 +115,7 @@ const playRound = function (playerMove, computerMove) {
 rock.addEventListener('click', function(){playRound('Rock', getComputerChoice())});
 paper.addEventListener('click', function(){playRound('Paper', getComputerChoice())});
 scissors.addEventListener('click', function(){playRound('Scissors', getComputerChoice())});
+newGame.addEventListener('click', function(){restartGame()})
 
 
 
